@@ -36,16 +36,19 @@
     <form action="<?=site_url('users/update/'.$user['id'])?>" method="POST" class="space-y-5">
       <div>
         <label class="block text-slate-700 mb-1 font-semibold">First Name</label>
-  <input type="text" name="firstname" value="<?= html_escape($user['firstname'])?>" required
+        <input type="text" name="firstname" value="<?= html_escape($user['firstname'])?>" required
                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-400 focus:border-blue-500 shadow-sm">
       </div>
-
       <div>
         <label class="block text-slate-700 mb-1 font-semibold">Last Name</label>
-  <input type="text" name="lastname" value="<?= html_escape($user['lastname'])?>" required
+        <input type="text" name="lastname" value="<?= html_escape($user['lastname'])?>" required
                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-400 focus:border-blue-500 shadow-sm">
       </div>
-
+      <div>
+        <label class="block text-slate-700 mb-1 font-semibold">Username</label>
+        <input type="text" name="username" value="<?= html_escape($user['username'])?>" required
+               class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-400 focus:border-blue-500 shadow-sm">
+      </div>
       <div>
         <label class="block text-slate-700 mb-1 font-semibold">Email</label>
         <input type="email" name="email" value="<?= html_escape($user['email'])?>" required
