@@ -56,7 +56,8 @@ class AccountsModel extends Model {
             'username' => $username,
             'email' => $email,
             'password' => $hash,
-            'role' => $role
+            'role' => $role,
+            'created_at' => date('Y-m-d H:i:s')
         ];
         return $this->insert($data);
     }

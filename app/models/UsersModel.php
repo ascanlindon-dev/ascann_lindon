@@ -4,14 +4,15 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 class UsersModel extends Model {
     protected $table = 'Users';
     protected $primary_key = 'id';
-    protected $allowed_fields = ['firstname', 'lastname', 'username', 'email', 'role', 'password'];
+    protected $allowed_fields = ['firstname', 'lastname', 'username', 'email', 'role', 'password', 'created_at'];
     protected $validation_rules = [
         'firstname' => 'required|min_length[2]|max_length[100]',
         'lastname' => 'required|min_length[2]|max_length[100]',
         'username' => 'required|min_length[2]|max_length[150]',
         'email' => 'required|valid_email|max_length[150]',
         'role' => 'required',
-        'password' => 'required'
+        'password' => 'required',
+        'created_at' => 'valid_date'
     ];
 
     public function __construct()

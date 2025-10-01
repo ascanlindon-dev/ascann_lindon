@@ -71,7 +71,8 @@ class UsersController extends Controller {
                 'username'  => $this->io->post('username'),
                 'email'     => $this->io->post('email'),
                 'role'      => 'user',
-                'password'  => password_hash($this->io->post('password'), PASSWORD_DEFAULT)
+                'password'  => password_hash($this->io->post('password'), PASSWORD_DEFAULT),
+                'created_at' => date('Y-m-d H:i:s')
             ];
             if($this->UsersModel->insert($data)){
                 redirect(site_url());
@@ -99,7 +100,8 @@ class UsersController extends Controller {
                 'firstname' => $this->io->post('firstname'),
                 'lastname'  => $this->io->post('lastname'),
                 'username'  => $this->io->post('username'),
-                'email'     => $this->io->post('email')
+                'email'     => $this->io->post('email'),
+                'created_at' => date('Y-m-d H:i:s')
             ];
             if($this->UsersModel->update($id, $data)){
                 redirect(site_url());
