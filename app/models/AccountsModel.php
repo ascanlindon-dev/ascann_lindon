@@ -2,8 +2,7 @@
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class AccountsModel extends Model {
-
-    protected $table = 'users';
+    protected $table = 'Users';
 
     public function __construct()
     {
@@ -45,19 +44,20 @@ class AccountsModel extends Model {
      * @param string $role
      * @return int|false inserted id or false on failure
      */
-    public function create_user($username, $password_plain, $role = 'user')
+    public function create_user($firstname, $lastname, $username, $email, $password_plain, $role = 'user')
     {
         if ($this->find_by_username($username)) {
             return false; // already exists
         }
-
         $hash = password_hash($password_plain, PASSWORD_DEFAULT);
         $data = [
+            'firstname' => $firstname,
+            'lastname' => $lastname,
             'username' => $username,
+            'email' => $email,
             'password' => $hash,
             'role' => $role
         ];
-
         return $this->insert($data);
     }
 }
