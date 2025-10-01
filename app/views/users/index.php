@@ -95,14 +95,16 @@
                   <td class="py-3 px-4"><?=($user['email']);?></td>
                   <td class="py-3 px-4 flex justify-center gap-3">
                     <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>
-                    <a href="<?=site_url('users/update/'.$user['id']);?>"
-                       class="btn-hover bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
-                      <i class="fa-solid fa-pen-to-square"></i> Update
-                    </a>
-                    <a href="<?=site_url('users/delete/'.$user['id']);?>"
-                       class="btn-hover bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
-                      <i class="fa-solid fa-trash"></i> Delete
-                    </a>
+                      <a href="<?=site_url('users/update/'.$user['id']);?>"
+                         class="btn-hover bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
+                        <i class="fa-solid fa-pen-to-square"></i> Update
+                      </a>
+                      <a href="<?=site_url('users/delete/'.$user['id']);?>"
+                         class="btn-hover bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md shadow flex items-center gap-1">
+                        <i class="fa-solid fa-trash"></i> Delete
+                      </a>
+                    <?php else: ?>
+                      <span class="text-gray-400 italic">Restricted</span>
                     <?php endif; ?>
                   </td>
                 </tr>

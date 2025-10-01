@@ -13,7 +13,7 @@ class UsersController extends Controller {
 
     public function index()
     {
-        // make current user available to views
+        $this->Auth->require_login();
         $data['current_user'] = $this->Auth->current_user();
 
         // Current page

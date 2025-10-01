@@ -33,4 +33,26 @@ class AuthController extends Controller {
         $this->Auth->logout();
         redirect(site_url());
     }
+    public function signup()
+    {
+        if ($this->io->method() === 'post') {
+            $firstname = $this->io->post('firstname');
+            $lastname = $this->io->post('lastname');
+            $username = $this->io->post('username');
+            $email = $this->io->post('email');
+            $password = $this->io->post('password');
+            $role = 'user';
+            $lava =& lava_instance();
+            $lava->call->model('AccountsModel');
+            $id = $lava->AccountsModel->create_user($firstname, $lastname, $username, $email, $password, $role);
+            if ($id) {
+                redirect(site_url('login'));
+            } else {
+                $data['error'] = 'Unable to sign up (maybe username exists)';
+                $this->call->view('auth/signup', $data);
+            }
+        } else {
+            $this->call->view('auth/signup');
+        }
+    }
 }
