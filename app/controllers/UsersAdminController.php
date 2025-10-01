@@ -34,11 +34,14 @@ class UsersAdminController extends Controller {
     public function create()
     {
         if ($this->io->method() === 'post') {
+            $firstname = $this->io->post('firstname');
+            $lastname = $this->io->post('lastname');
             $username = $this->io->post('username');
+            $email = $this->io->post('email');
             $password = $this->io->post('password');
             $role = $this->io->post('role', 'user');
 
-            $id = $this->AccountsModel->create_user($username, $password, $role);
+            $id = $this->AccountsModel->create_user($firstname, $lastname, $username, $email, $password, $role);
             if ($id) {
                 redirect(site_url('admin/users'));
             } else {

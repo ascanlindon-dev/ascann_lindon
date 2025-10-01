@@ -79,6 +79,7 @@
               <th class="py-3 px-4">ID</th>
               <th class="py-3 px-4">First Name</th>
               <th class="py-3 px-4">Last Name</th>
+              <th class="py-3 px-4">Username</th>
               <th class="py-3 px-4">Email</th>
               <th class="py-3 px-4">Action</th>
             </tr>
@@ -88,8 +89,9 @@
               <?php foreach(html_escape($users) as $user): ?>
                 <tr class="hover:bg-gray-100 transition">
                   <td class="py-3 px-4 font-medium"><?=($user['id']);?></td>
-                  <td class="py-3 px-4"><?=($user['fname']);?></td>
-                  <td class="py-3 px-4"><?=($user['lname']);?></td>
+                  <td class="py-3 px-4"><?=($user['firstname']);?></td>
+                  <td class="py-3 px-4"><?=($user['lastname']);?></td>
+                  <td class="py-3 px-4"><?=($user['username']);?></td>
                   <td class="py-3 px-4"><?=($user['email']);?></td>
                   <td class="py-3 px-4 flex justify-center gap-3">
                     <?php if (!empty($current_user) && ($current_user['role'] ?? '') === 'admin'): ?>

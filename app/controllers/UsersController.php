@@ -66,11 +66,13 @@ class UsersController extends Controller {
 
         if($this->io->method() == 'post'){
             $data = [
-                'fname' => $this->io->post('fname'),
-                'lname'  => $this->io->post('lname'),
-                'email'      => $this->io->post('email')
+                'firstname' => $this->io->post('firstname'),
+                'lastname'  => $this->io->post('lastname'),
+                'username'  => $this->io->post('username'),
+                'email'     => $this->io->post('email'),
+                'role'      => 'user',
+                'password'  => password_hash($this->io->post('password'), PASSWORD_DEFAULT)
             ];
-
             if($this->UsersModel->insert($data)){
                 redirect(site_url());
             }else{
@@ -94,11 +96,11 @@ class UsersController extends Controller {
 
         if($this->io->method() == 'post'){
             $data = [
-                'fname' => $this->io->post('fname'),
-                'lname'  => $this->io->post('lname'),
-                'email'      => $this->io->post('email')
+                'firstname' => $this->io->post('firstname'),
+                'lastname'  => $this->io->post('lastname'),
+                'username'  => $this->io->post('username'),
+                'email'     => $this->io->post('email')
             ];
-
             if($this->UsersModel->update($id, $data)){
                 redirect(site_url());
             }else{
