@@ -36,13 +36,13 @@
     <form action="<?=site_url('users/update/'.$user['id'])?>" method="POST" class="space-y-5">
       <div>
         <label class="block text-slate-700 mb-1 font-semibold">First Name</label>
-        <input type="text" name="fname" value="<?= html_escape($user['fname'])?>" required
+  <input type="text" name="firstname" value="<?= html_escape($user['firstname'])?>" required
                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-400 focus:border-blue-500 shadow-sm">
       </div>
 
       <div>
         <label class="block text-slate-700 mb-1 font-semibold">Last Name</label>
-        <input type="text" name="lname" value="<?= html_escape($user['lname'])?>" required
+  <input type="text" name="lastname" value="<?= html_escape($user['lastname'])?>" required
                class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-4 focus:ring-blue-400 focus:border-blue-500 shadow-sm">
       </div>
 
