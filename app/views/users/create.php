@@ -53,6 +53,11 @@
         <input type="email" name="email" required placeholder="Enter email address"
                class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-500 placeholder-gray-500">
       </div>
+      <div>
+        <label class="block text-gray-300 mb-1 font-medium">Password</label>
+        <input type="password" name="password" required placeholder="Enter password"
+               class="w-full px-4 py-3 border border-gray-600 bg-gray-800 text-white rounded-lg focus:ring-2 focus:ring-blue-500 placeholder-gray-500">
+      </div>
 
       <button type="submit"
               class="btn-hover w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-lg transition transform hover:scale-105">
