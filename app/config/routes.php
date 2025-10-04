@@ -49,6 +49,7 @@ $router->match('/users/update/{id}', 'UsersController::update', ['GET', 'POST'])
 $router->get('/users/delete/{id}', 'UsersController::delete');
 // Authentication routes
 $router->match('/login', 'AuthController::login', ['GET', 'POST']);
+$router->match('/signup', 'AuthController::signup', ['GET', 'POST']);
 $router->get('/logout', 'AuthController::logout');
 // Admin user management
 $router->get('/admin/users', 'UsersAdminController::index');
