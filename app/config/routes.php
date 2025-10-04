@@ -44,6 +44,12 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 
 $router->get('/', function() {
+	// If user is logged in, redirect to dashboard
+	session_start();
+	if (isset($_SESSION['user'])) {
+		header('Location: ' . site_url('users'));
+		exit;
+	}
 	include __DIR__ . '/../views/auth/preloader.php';
 });
 $router->match('/users/create', 'UsersController::create', ['GET', 'POST']);

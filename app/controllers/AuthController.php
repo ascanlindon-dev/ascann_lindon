@@ -17,8 +17,8 @@ class AuthController extends Controller {
             $password = $this->io->post('password');
 
             if ($this->Auth->login($username, $password)) {
-                // redirect to home
-                redirect(site_url());
+                // redirect to dashboard
+                redirect(site_url('users'));
             } else {
                 $data['error'] = 'Invalid username or password';
                 $this->call->view('auth/login', $data);
