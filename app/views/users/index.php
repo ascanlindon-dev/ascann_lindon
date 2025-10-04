@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="<?=base_url();?>/public/style.css">
 
   <style>
-    body { 
-      font-family: 'Inter', sans-serif; 
-      background: #f7fafc; /* light gray professional bg */
-      color: #2d3748; 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #38ef7d 0%, #11998e 40%, #43cea2 70%, #60a5fa 100%);
+      color: #2d3748;
     }
     table thead tr { background: #2b6cb0; } /* deep blue header */
     .hp-page { 

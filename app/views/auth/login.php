@@ -6,9 +6,9 @@
   <title>Login</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen flex items-center justify-center bg-gray-100">
-  <div class="w-full max-w-md bg-white p-8 rounded shadow">
-    <h2 class="text-2xl font-bold mb-4">Please sign in</h2>
+<body class="min-h-screen flex items-center justify-center" style="background: linear-gradient(135deg, #38ef7d 0%, #11998e 40%, #43cea2 70%, #60a5fa 100%);">
+  <div class="w-full max-w-md bg-white/90 p-8 rounded-2xl shadow-2xl border border-blue-200">
+  <h2 class="text-2xl font-bold mb-4" style="background: linear-gradient(90deg, #38ef7d, #43cea2, #60a5fa, #e0f7fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-fill-color: transparent;">Please sign in</h2>
     <?php if (!empty(
       $error ?? null)): ?>
       <div class="bg-red-100 text-red-700 p-2 rounded mb-3"><?php echo html_escape($error); ?></div>

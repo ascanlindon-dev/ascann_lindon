@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #2563eb, #60a5fa);
+      background: linear-gradient(135deg, #38ef7d 0%, #11998e 40%, #43cea2 70%, #60a5fa 100%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -20,24 +20,34 @@
       justify-content: center;
     }
     .fb-loader {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      border: 6px solid #fff;
-      border-top: 6px solid #2563eb;
+      border: 7px solid #fff;
+      border-top: 7px solid #38ef7d;
+      border-right: 7px solid #60a5fa;
+      border-bottom: 7px solid #43cea2;
+      border-left: 7px solid #e0f7fa;
+      box-shadow: 0 0 32px 0 #38ef7d44, 0 0 16px 0 #60a5fa44;
       animation: spin 1s linear infinite;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
     .title {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: bold;
       color: #fff;
       letter-spacing: 2px;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      text-shadow: 0 2px 12px #11998e99, 0 2px 8px #60a5fa99;
+      background: linear-gradient(90deg, #38ef7d, #43cea2, #60a5fa, #e0f7fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
     }
   </style>
   <script>

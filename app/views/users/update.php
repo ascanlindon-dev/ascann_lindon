@@ -10,7 +10,7 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #1e293b, #0f172a);
+      background: linear-gradient(135deg, #38ef7d 0%, #11998e 40%, #43cea2 70%, #60a5fa 100%);
       color: #1e293b;
     }
     .btn-hover:hover {

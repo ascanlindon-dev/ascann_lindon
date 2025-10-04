@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     body {
-      font-family: 'Inter', sans-serif; /* clean, professional font */
-      background: linear-gradient(135deg, #1a202c, #2d3748, #4a5568);
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #38ef7d 0%, #11998e 40%, #43cea2 70%, #60a5fa 100%);
       color: #e2e8f0;
     }
     .btn-hover:hover {
