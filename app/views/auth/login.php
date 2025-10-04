@@ -26,6 +26,9 @@
         <button type="submit" class="w-full bg-blue-600 text-white p-2 rounded">Sign in</button>
       </div>
     </form>
+    <div class="mt-4 text-center">
+      <a href="<?= site_url('signup') ?>" class="text-blue-600">Don't have an account? Sign up</a>
+    </div>
   </div>
 </body>
 </html>
