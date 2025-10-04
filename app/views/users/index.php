@@ -73,7 +73,7 @@
 
       <!-- Table -->
       <div class="overflow-x-auto rounded-lg border border-gray-200 shadow">
-        <table class="w-full text-center border-collapse">
+  <table class="w-full text-center border-collapse" style="background: #e3f2fd;"> 
           <thead>
             <tr class="text-white uppercase tracking-wide text-sm">
               <th class="py-3 px-4">ID</th>

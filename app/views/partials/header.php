@@ -6,7 +6,14 @@
     </h1>
     <div class="flex items-center gap-3">
       <?php if (isset($_SESSION['user'])): ?>
-        <span class="text-white">Hello, <?= html_escape($_SESSION['user']['username']) ?></span>
+        <span class="text-white">
+          Hello,
+          <?php if ($_SESSION['user']['role'] === 'admin'): ?>
+            Admin
+          <?php else: ?>
+            <?= html_escape($_SESSION['user']['firstname'] ?? $_SESSION['user']['username']) ?>
+          <?php endif; ?>
+        </span>
         <a href="<?= site_url('logout') ?>" class="bg-white text-blue-700 px-3 py-1 rounded">Logout</a>
       <?php else: ?>
         <a href="<?= site_url('login') ?>" class="bg-white text-blue-700 px-3 py-1 rounded">Login</a>
