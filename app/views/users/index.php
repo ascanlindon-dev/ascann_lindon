@@ -110,7 +110,7 @@
                 </tr>
               <?php endforeach; ?>
             <?php else: ?>
-              <tr><td colspan="5" class="py-4 text-gray-500">No students found</td></tr>
+              <tr><td colspan="6" class="py-4 text-gray-500">No students found</td></tr>
             <?php endif; ?>
           </tbody>
         </table>
@@ -120,16 +120,9 @@
       <div class="mt-6 flex justify-center">
         <div class="pagination flex space-x-2">
           <?php
+            // The pagination library returns ready-made HTML. Output it directly.
             if (!empty($page)) {
-              echo str_replace(
-                ['<a ', '<strong>', '</strong>'],
-                [
-                  '<a class="hp-page"',     
-                  '<span class="hp-current">',  
-                  '</span>'
-                ],
-                $page
-              );
+              echo $page;
             }
           ?>
         </div>

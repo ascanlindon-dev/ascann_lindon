@@ -27,31 +27,41 @@ class UsersController extends Controller {
     $q = trim($this->io->get('q'));
     }
 
-    $records_per_page = 5;
+        $records_per_page = 5;
 
-    // Fetch paginated results
-    $all = $this->UsersModel->page($q, $records_per_page, $page);
-    $data['users'] = $all['records'];
-    $total_rows = $all['total_rows'];
+        // Fetch paginated results
+        $all = $this->UsersModel->page($q, $records_per_page, $page);
+        $data['users'] = $all['records'];
+        $total_rows = $all['total_rows'];
 
+        // Pagination
+        // Build a URL base and delimiter depending on whether a search query exists.
+        // We pass a query-string starting with '?' to Pagination so site_url() will
+        // produce URLs like BASE_URL/?q=term&page=2 which match this router's expectations.
+        if (!empty($q)) {
+            $page_url = '?q=' . urlencode($q);
+            $page_delimiter = '&page=';
+        } else {
+            // when there's no search query, build links like BASE_URL/?page=2
+            $page_url = '?page=';
+            $page_delimiter = '';
+        }
 
-        // Pagination 
-        
         $this->pagination->set_options([
             'first_link'     => '⏮ First',
             'last_link'      => 'Last ⏭',
             'next_link'      => 'Next →',
             'prev_link'      => '← Prev',
-            'page_delimiter' => '&page='
+            'page_delimiter' => $page_delimiter
         ]);
-       
+
         $this->pagination->set_theme('default');
-        
+
         $this->pagination->initialize(
             $total_rows,
             $records_per_page,
             $page,
-            site_url() . '?q=' . urlencode($q)
+            $page_url
         );
         $data['page'] = $this->pagination->paginate();
 
