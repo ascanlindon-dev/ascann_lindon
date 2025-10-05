@@ -11,7 +11,7 @@ $router->get('/', function() {
 		header('Location: ' . site_url('users'));
 		exit;
 	}
-	include __DIR__ . '/../views/auth/preloader.php';
+	include __DIR__ . '/../views/users/index.php';
 });
 $router->match('/users/create', 'UsersController::create', ['GET', 'POST']);
 $router->match('/users/update/{id}', 'UsersController::update', ['GET', 'POST']);
