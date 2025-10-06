@@ -6,47 +6,53 @@ class UsersController extends Controller {
     {
         parent::__construct();
         $this->call->model('UsersModel');
+        // load auth library to check permissions
         $this->call->library('Auth');
-        $this->call->library('pagination'); // ✅ make sure pagination library is loaded
     }
 
     public function index()
     {
-        // Require login
         $this->Auth->require_login();
         $data['current_user'] = $this->Auth->current_user();
 
-        // --- Get current page ---
-        $page = (int) $this->io->get('page', 1);
-        if ($page < 1) $page = 1;
+        // Current page
+        $page = 1;
+        if (isset($_GET['page']) && !empty($_GET['page'])) {
+            $page = $this->io->get('page');
+        }
 
-        // --- Search query ---
-        $q = trim($this->io->get('q', ''));
+    // Search query
+    $q = '';
+    if (isset($_GET['q']) && !empty($_GET['q'])) {
+    $q = trim($this->io->get('q'));
+    }
 
-        // --- Records per page ---
         $records_per_page = 5;
 
-        // --- Fetch paginated results ---
+        // Fetch paginated results
         $all = $this->UsersModel->page($q, $records_per_page, $page);
         $data['users'] = $all['records'];
         $total_rows = $all['total_rows'];
 
-        // --- Pagination setup ---
+        // Pagination
+        // Build a URL base and delimiter depending on whether a search query exists.
+        // We pass a query-string starting with '?' to Pagination so site_url() will
+        // produce URLs like BASE_URL/?q=term&page=2 which match this router's expectations.
         if (!empty($q)) {
-            // Example: /users?q=john&page=2
-            $page_url = '?q=' . urlencode($q) . '&page=';
+            $page_url = '?q=' . urlencode($q);
+            $page_delimiter = '&page=';
         } else {
-            // Example: /users?page=2
+            // when there's no search query, build links like BASE_URL/?page=2
             $page_url = '?page=';
+            $page_delimiter = '';
         }
 
         $this->pagination->set_options([
-            'first_link' => '⏮ First',
-            'last_link'  => 'Last ⏭',
-            'next_link'  => 'Next →',
-            'prev_link'  => '← Prev',
-            'full_tag_open'  => '<div class="pagination">', // optional styling
-            'full_tag_close' => '</div>'
+            'first_link'     => '⏮ First',
+            'last_link'      => 'Last ⏭',
+            'next_link'      => 'Next →',
+            'prev_link'      => '← Prev',
+            'page_delimiter' => $page_delimiter
         ]);
 
         $this->pagination->set_theme('default');
@@ -57,78 +63,73 @@ class UsersController extends Controller {
             $page,
             $page_url
         );
+        $data['page'] = $this->pagination->paginate();
 
-        $data['page_links'] = $this->pagination->paginate(); // renamed for clarity
-
-        // --- Load view ---
         $this->call->view('users/index', $data);
     }
 
-    public function create()
-    {
+    function create(){
+        // only admin can create
         $this->Auth->require_login();
         $this->Auth->require_role('admin');
 
-        if ($this->io->method() == 'post') {
+        if($this->io->method() == 'post'){
             $data = [
-                'firstname'  => $this->io->post('firstname'),
-                'lastname'   => $this->io->post('lastname'),
-                'username'   => $this->io->post('username'),
-                'email'      => $this->io->post('email'),
-                'role'       => 'user',
-                'password'   => password_hash($this->io->post('password'), PASSWORD_DEFAULT),
+                'firstname' => $this->io->post('firstname'),
+                'lastname'  => $this->io->post('lastname'),
+                'username'  => $this->io->post('username'),
+                'email'     => $this->io->post('email'),
+                'role'      => 'user',
+                'password'  => password_hash($this->io->post('password'), PASSWORD_DEFAULT),
                 'created_at' => date('Y-m-d H:i:s')
             ];
-
-            if ($this->UsersModel->insert($data)) {
-                redirect(site_url('users')); // ✅ redirect to /users
-            } else {
+            if($this->UsersModel->insert($data)){
+                redirect(site_url());
+            }else{
                 echo "Error in creating user.";
             }
-        } else {
+
+        }else{
             $this->call->view('users/create');
         }
     }
 
-    public function update($id)
-    {
+    function update($id){
+        // only admin can update
         $this->Auth->require_login();
         $this->Auth->require_role('admin');
-
         $user = $this->UsersModel->find($id);
-        if (!$user) {
+        if(!$user){
             echo "User not found.";
             return;
         }
 
-        if ($this->io->method() == 'post') {
+        if($this->io->method() == 'post'){
             $data = [
-                'firstname'  => $this->io->post('firstname'),
-                'lastname'   => $this->io->post('lastname'),
-                'username'   => $this->io->post('username'),
-                'email'      => $this->io->post('email'),
+                'firstname' => $this->io->post('firstname'),
+                'lastname'  => $this->io->post('lastname'),
+                'username'  => $this->io->post('username'),
+                'email'     => $this->io->post('email'),
                 'created_at' => date('Y-m-d H:i:s')
             ];
-
-            if ($this->UsersModel->update($id, $data)) {
-                redirect(site_url('users'));
-            } else {
-                echo "Error in updating user.";
+            if($this->UsersModel->update($id, $data)){
+                redirect(site_url());
+            }else{
+                echo "Error in updating information.";
             }
-        } else {
+        }else{
             $data['user'] = $user;
             $this->call->view('users/update', $data);
         }
     }
-
-    public function delete($id)
-    {
+    
+    function delete($id){
+        // only admin can delete
         $this->Auth->require_login();
         $this->Auth->require_role('admin');
-
-        if ($this->UsersModel->delete($id)) {
-            redirect(site_url('users'));
-        } else {
+        if($this->UsersModel->delete($id)){
+            redirect(site_url());
+        }else{
             echo "Error in deleting user.";
         }
     }
