@@ -1,5 +1,4 @@
 <?php
-<?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 /**
  * ------------------------------------------------------------------
@@ -59,13 +58,13 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 */
 
 $database['main'] = array(
-    'driver'	=> 'mysql',
-    'hostname'	=> 'sql.freedb.tech',
-    'port'		=> '3306',
-    'username'	=> 'freedb_Lindon',
-    'password'	=> '!bz!$FzTXE65pMr',
-    'database'	=> 'freedb_Ascan_lindon',
-    'charset'	=> 'utf8mb4',
+    'driver'	=> '',
+    'hostname'	=> '',
+    'port'		=> '',
+    'username'	=> '',
+    'password'	=> '',
+    'database'	=> '',
+    'charset'	=> '',
     'dbprefix'	=> '',
     // Optional for SQLite
     'path'      => ''
